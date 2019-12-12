@@ -14,6 +14,7 @@ public class TestController {
 
     @GetMapping("/hi")
     public String test01(@RequestParam String name) {
+        log.info("收到hi 请求, 准备调用微服务");
         return serviceFeign.test01(name);
     }
 }
