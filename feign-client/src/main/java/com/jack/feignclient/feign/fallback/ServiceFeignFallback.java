@@ -9,4 +9,9 @@ public class ServiceFeignFallback implements ServiceFeign {
     public String test01(String name) {
         return "异常了 我擦" + name;
     }
+
+    @Override
+    public String test02(String name) {
+        return "异常了 我擦" + name;
+    }
 }

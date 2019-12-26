@@ -17,7 +17,12 @@ public class ServiceFeignFallbackFactory implements FallbackFactory<ServiceFeign
 
             @Override
             public String test01(String name) {
-                return "降级返回";
+                return "降级返回test01";
+            }
+
+            @Override
+            public String test02(String name) {
+                return "降级返回test02";
             }
         };
     }

@@ -4,7 +4,17 @@ server:
 spring:
   application:
     name: feign-client
-
+#  关闭重试机制开关
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+sevice-feign:
+  ribbon:
+    MaxAutoRetries: 3
+    MaxAutoRetriesNextServer: 3
+    ReadTimeout: 2000
+    OkToRetryOnAllOperations: true
 eureka:
   client:
     serviceUrl:
@@ -19,4 +29,4 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 3000
+            timeoutInMilliseconds: 9000

@@ -17,4 +17,9 @@ public class TestController {
         log.info("收到hi 请求, 准备调用微服务");
         return serviceFeign.test01(name);
     }
+    @PostMapping("/hi02")
+    public String test02(@RequestBody String name) {
+        log.info("收到hi 请求, 准备调用微服务");
+        return serviceFeign.test02(name);
+    }
 }
