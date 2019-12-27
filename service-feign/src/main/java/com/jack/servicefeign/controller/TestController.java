@@ -1,6 +1,7 @@
 package com.jack.servicefeign.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -9,6 +10,9 @@ import java.util.UUID;
 @RequestMapping("/api")
 @Slf4j
 public class TestController {
+
+    @Value("${jack}")
+    private String jack;
 
     @GetMapping("/test01")
     public String test01(@RequestParam String name) {
@@ -34,5 +38,10 @@ public class TestController {
         String result = UUID.randomUUID()+":"+name;
         log.info("超时返回:"+ result);
         return result;
+    }
+
+    @GetMapping("/test03")
+    public String test03(){
+        return jack;
     }
 }

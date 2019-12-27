@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: service-feign
+  cloud:
+    config:
+      label: master
+      profile: dev
+      uri: http://localhost:8888
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health
