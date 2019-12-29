@@ -8,25 +8,31 @@ spring:
   cloud:
     loadbalancer:
       retry:
-        enabled: true
-sevice-feign:
-  ribbon:
-    MaxAutoRetries: 3
-    MaxAutoRetriesNextServer: 3
-    ReadTimeout: 2000
-    OkToRetryOnAllOperations: true
+        enabled: false
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000
+  MaxAutoRetries: 2 #同一台实例最大重试次数,不包括首次调用
+  MaxAutoRetriesNextServer: 1 #重试负载均衡其他的实例最大重试次数,不包括首次调用
+  OkToRetryOnAllOperations: false  #是否所有操作都重试
+#  计算方式:
+#  例    如: MaxAutoRetries:1    MaxAutoRetriesNextServer:2
+#  则:       MaxAutoRetries+MaxAutoRetriesNextServer+(MaxAutoRetries *MaxAutoRetriesNextServer) 即重试3次 则一共产生4次调用
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 #  Feign是自带断路器的，在D版本的Spring Cloud之后，它没有默认打开。需要在配置文件中配置打开它，在配置文件加以下代码：
-feign:
-  hystrix:
-    enabled: true
+#feign:
+#  hystrix:
+#    enabled: true
+#hystrix的超时时间
 hystrix:
-  commad:
+  command:
     default:
       execution:
+        timeout:
+          enabled: true
         isolation:
           thread:
             timeoutInMilliseconds: 9000
